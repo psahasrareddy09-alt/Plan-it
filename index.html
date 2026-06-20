@@ -285,8 +285,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
           <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill college" id="college-bar" style="width:0%"></div></div><div class="progress-label" id="college-count">0 / 0 done</div></div>
         </div>
         <div class="goals-card">
-          <div class="goals-card-header"><div class="type-dot" style="background:var(--exam)"></div><div class="goals-card-title">Exam Work</div></div>
-          <div class="goal-input-row"><input type="text" id="exam-input" placeholder="Add an exam task..." onkeydown="if(event.key==='Enter')addGoal('exam')"><button class="add-btn" onclick="addGoal('exam')">+</button></div>
+          <div class="goals-card-header"><div class="type-dot" style="background:var(--exam)"></div><div class="goals-card-title">Personal Tasks</div></div>
+          <div class="goal-input-row"><input type="text" id="exam-input" placeholder="Add a personal task..." onkeydown="if(event.key==='Enter')addGoal('exam')"><button class="add-btn" onclick="addGoal('exam')">+</button></div>
           <ul class="goal-list" id="exam-list"></ul>
           <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill exam" id="exam-bar" style="width:0%"></div></div><div class="progress-label" id="exam-count">0 / 0 done</div></div>
         </div>
@@ -302,8 +302,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
           <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill college" id="wcollege-bar" style="width:0%"></div></div><div class="progress-label" id="wcollege-count">0 / 0 done</div></div>
         </div>
         <div class="goals-card">
-          <div class="goals-card-header"><div class="type-dot" style="background:var(--exam)"></div><div class="goals-card-title">Exam Work</div></div>
-          <div class="goal-input-row"><input type="text" id="wexam-input" placeholder="Add a weekly exam goal..." onkeydown="if(event.key==='Enter')addWeekly('exam')"><button class="add-btn" onclick="addWeekly('exam')">+</button></div>
+          <div class="goals-card-header"><div class="type-dot" style="background:var(--exam)"></div><div class="goals-card-title">Personal Tasks</div></div>
+          <div class="goal-input-row"><input type="text" id="wexam-input" placeholder="Add a weekly personal task..." onkeydown="if(event.key==='Enter')addWeekly('exam')"><button class="add-btn" onclick="addWeekly('exam')">+</button></div>
           <ul class="goal-list" id="wexam-list"></ul>
           <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill exam" id="wexam-bar" style="width:0%"></div></div><div class="progress-label" id="wexam-count">0 / 0 done</div></div>
         </div>
@@ -401,12 +401,13 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
   <div class="popup">
     <div class="popup-title" id="popup-title">—</div>
     <div class="popup-sub" id="popup-sub">—</div>
-    <div id="popup-goals-wrap"><div class="section-label">Goals for this day</div><div class="popup-goals-list" id="popup-goals-list"></div></div>
+    
     <label>Notes</label>
     <textarea id="popup-note" rows="3" placeholder="Write a note for this day..."></textarea>
     <div class="popup-actions">
       <button class="btn btn-primary" onclick="savePopup()">Save</button>
       <button class="btn btn-star" id="star-btn" onclick="toggleStar()"><i class="ti ti-star"></i> Important</button>
+      <button class="btn btn-danger" onclick="clearPopup()">Clear</button>
       <button class="btn btn-ghost" onclick="closePopup()">Close</button>
     </div>
   </div>
