@@ -465,8 +465,16 @@ function renderCalendar(){document.getElementById('cal-month-label').textContent
 function changeMonth(dir){curMonth+=dir;if(curMonth<0){curMonth=11;curYear--;}if(curMonth>11){curMonth=0;curYear++;}renderCalendar();}
 function goToday(){curYear=now.getFullYear();curMonth=now.getMonth();renderCalendar();}
 renderCalendar();
-function openPopup(d,key){popupDateKey=key;const nd=state[key]||{};document.getElementById('popup-title').textContent=MONTHS[curMonth]+' '+d+', '+curYear;document.getElementById('popup-sub').textContent=key;document.getElementById('popup-note').value=nd.note||'';const sb=document.getElementById('star-btn');sb.classList.toggle('active',!!nd.star);const goals=[...(nd.college||[]).map(g=>({...g,type:'college'})),...(nd.exam||[]).map(g=>({...g,type:'exam'}))];const gl=document.getElementById('popup-goals-list');gl.innerHTML=goals.length===0?'<div style="font-size:12px;color:var(--muted2);padding:8px 0;">No goals for this day yet.</div>':goals.map((g,i)=>`<div class="popup-goal-item"><div class="checkbox ${g.done?'checked':''}" onclick="togglePopupGoal(${i})"></div><span style="flex:1;${g.done?'text-decoration:line-through;color:var(--muted2)':''}">${g.text}</span><span class="type-tag ${g.type}">${g.type}</span></div>`).join('');document.getElementById('day-popup').classList.add('open');}
-function togglePopupGoal(idx){if(!state[popupDateKey])return;const all=[...(state[popupDateKey].college||[]).map(g=>({...g,t:'college'})),...(state[popupDateKey].exam||[]).map(g=>({...g,t:'exam'}))];const item=all[idx];if(!item)return;const srcArr=item.t==='college'?state[popupDateKey].college:state[popupDateKey].exam;const offset=item.t==='exam'?(state[popupDateKey].college||[]).length:0;if(srcArr&&srcArr[idx-offset]!==undefined)srcArr[idx-offset].done=!srcArr[idx-offset].done;save();openPopup(parseInt(document.getElementById('popup-title').textContent),popupDateKey);}
+function openPopup(d,key){
+  popupDateKey=key;
+  const nd=state[key]||{};
+  document.getElementById('popup-title').textContent=MONTHS[curMonth]+' '+d+', '+curYear;
+  document.getElementById('popup-sub').textContent=key;
+  document.getElementById('popup-note').value=nd.note||'';
+  const sb=document.getElementById('star-btn');
+  sb.classList.toggle('active',!!nd.star);
+  document.getElementById('day-popup').classList.add('open');
+}
 function toggleStar(){if(!state[popupDateKey])state[popupDateKey]={};state[popupDateKey].star=!state[popupDateKey].star;document.getElementById('star-btn').classList.toggle('active',!!state[popupDateKey].star);save();}
 function savePopup(){if(!state[popupDateKey])state[popupDateKey]={};state[popupDateKey].note=document.getElementById('popup-note').value;save();closePopup();renderCalendar();}
 function closePopup(){document.getElementById('day-popup').classList.remove('open');}
